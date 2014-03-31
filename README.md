@@ -25,7 +25,7 @@ Note: The 7digital Android SDK depends on Volley. Volley will also need to be ad
 
 ## Adding Purchasing to your App ##
 
-To add purchasing simply integrate the 7digital Buy Button. This takes care of the checkout and music download process without sending users away to another site. For an example app, see the [sample 7digital buy button app](https://github.com/7digital/7digital-android-buy-button-demo) 
+To add purchasing simply integrate the 7digital Buy Button. This takes care of the checkout and music download process without sending users away to another site. For an example app, see the [sample 7digital buy button app.](https://github.com/7digital/7digital-android-buy-button-demo) 
 
 
 
