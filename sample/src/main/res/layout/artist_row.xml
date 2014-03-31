@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:orientation="horizontal"
+		android:layout_height="?android:attr/listPreferredItemHeight"
+		android:layout_width="match_parent"
+		android:padding="8dp">
+
+	<TextView
+		android:id="@+id/chart_position_textview"
+		android:layout_width="wrap_content"
+		android:fontFamily="sans-serif-condensed"
+		android:gravity="center"
+		android:layout_marginRight="16dp"
+		tools:text="1"
+		android:textAppearance="?android:attr/textAppearanceMedium"
+		android:layout_height="match_parent" />
+
+	<ImageView
+		android:id="@+id/image_imageview"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content" />
+
+	<TextView
+		android:id="@+id/title_textview"
+		android:textAppearance="?android:attr/textAppearanceMedium"
+		tools:text="Artist"
+		android:singleLine="true"
+		android:fontFamily="sans-serif-light"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content" />
+
+</LinearLayout>

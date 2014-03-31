@@ -1,0 +1,56 @@
+apply plugin: 'android-library'
+
+android {
+    compileSdkVersion 19
+    buildToolsVersion "19.0.3"
+
+    defaultConfig {
+        minSdkVersion 8
+        targetSdkVersion 19
+        versionCode 1
+        versionName "0.9"
+
+        buildConfigField "String", "TEST_USER_EMAIL", TEST_USER_EMAIL
+        buildConfigField "String", "TEST_USER_PASSWORD", TEST_USER_PASSWORD
+        buildConfigField "String", "TEST_OAUTH_CONSUMER_KEY", TEST_OAUTH_CONSUMER_KEY
+        buildConfigField "String", "TEST_OAUTH_CONSUMER_SECRET", TEST_OAUTH_CONSUMER_SECRET
+
+    }
+    buildTypes {
+        release {
+            runProguard false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+        }
+    }
+
+    lintOptions {
+        textReport true
+        disable 'InvalidPackage'
+
+    }
+
+    packagingOptions {
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/NOTICE'
+    }
+}
+
+dependencies {
+
+    compile('org.simpleframework:simple-xml:2.7.1') {
+        exclude module: 'stax'
+        exclude module: 'stax-api'
+        exclude module: 'xpp3'
+    }
+    compile 'com.squareup.okhttp:okhttp:1.5.2'
+    compile 'com.android.support:appcompat-v7:+'
+    compile 'com.fasterxml.jackson.core:jackson-core:2.3.1'
+    compile 'com.fasterxml.jackson.core:jackson-databind:2.3.1'
+    compile 'com.fasterxml.jackson.core:jackson-annotations:2.3.1'
+
+    compile 'com.android.volley:volley:+@aar'
+
+    compile 'joda-time:joda-time:2.3'
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+}

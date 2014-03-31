@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">7DI SDK Sample</string>
+    <string name="title_artist_section">Artists</string>
+    <string name="title_track_section">Tracks</string>
+    <string name="title_album_section">Albums</string>
+	<string name="charts">Charts</string>
+	<string name="search">Search</string>
+	<string name="no_results">No results</string>
+	<string name="enter_search_term">Enter a search term</string>
+	<string name="too_short">Too short</string>
+	<string name="albums">Albums</string>
+	<string name="no_releases">No Releases</string>
+
+</resources>

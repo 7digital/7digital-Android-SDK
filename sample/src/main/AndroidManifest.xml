@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+	package="uk.co.sevendigital.android.sdk.sample">
+
+	<uses-permission android:name="android.permission.INTERNET" />
+
+	<application
+		android:name=".app.SampleApplication"
+		android:allowBackup="true"
+		android:icon="@drawable/ic_launcher"
+		android:label="@string/app_name"
+		android:theme="@style/AppTheme">
+		<activity
+			android:name=".activity.ChartActivity"
+			android:label="@string/app_name">
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN" />
+
+				<category android:name="android.intent.category.LAUNCHER" />
+			</intent-filter>
+		</activity>
+
+		<activity android:name=".activity.SearchActivity" />
+		<activity android:name=".activity.ArtistDetailActivity" />
+		<activity android:name=".activity.TrackDetailActivity" />
+		<activity android:name=".activity.ReleaseDetailActivity" />
+	</application>
+
+</manifest>
