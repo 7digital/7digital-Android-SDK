@@ -1,0 +1,13 @@
+uk.co.sevendigital.android.sdk.api
+uk.co.sevendigital.android.sdk.api.object
+uk.co.sevendigital.android.sdk.api.request.abs
+uk.co.sevendigital.android.sdk.api.request.artist
+uk.co.sevendigital.android.sdk.api.request.login
+uk.co.sevendigital.android.sdk.api.request.preview
+uk.co.sevendigital.android.sdk.api.request.release
+uk.co.sevendigital.android.sdk.api.request.track
+uk.co.sevendigital.android.sdk.core
+uk.co.sevendigital.android.sdk.model
+uk.co.sevendigital.android.sdk.model.base
+uk.co.sevendigital.android.sdk.util
+uk.co.sevendigital.android.sdk.util.external
