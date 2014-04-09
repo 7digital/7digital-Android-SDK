@@ -25,7 +25,6 @@ import javax.net.ssl.SSLSocketFactory;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 
-import uk.co.sevendigital.android.sdk.BuildConfig;
 import uk.co.sevendigital.android.sdk.util.OkHttpStack;
 import uk.co.sevendigital.android.sdk.util.SDIServerUtil;
 
@@ -41,9 +40,10 @@ public class SDICore {
 	public static synchronized RequestQueue getQueue(Context ctx) {
 
 		if (queue == null) {
-			System.out.println(BuildConfig.BUILD_TYPE);
 			OkHttpClient okClient = new OkHttpClient();
-			okClient.setSslSocketFactory(badSslSocketFactory());
+			//disable checking of ssl certs when debugging, so we can proxy the requests
+			//todo: always disable
+//			if (BuildConfig.DEBUG)okClient.setSslSocketFactory(badSslSocketFactory());
 			queue = Volley.newRequestQueue(ctx, new OkHttpStack(okClient));
 		}
 		return queue;
