@@ -2,7 +2,7 @@
 
 The 7digital Android SDK enables you to you add functionality such as preview streams, music charts and metadata, search and purchasing to your app.
 
-Full API documentation is available at http://7digital.github.io/7digital-Android-SDK/apidocs/
+Full SDK documentation is available at http://7digital.github.io/7digital-Android-SDK/apidocs/
 
 ## Getting Started ##
 
