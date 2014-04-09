@@ -79,6 +79,7 @@ public final class SDIGetTrackPreviewRequest extends SDIAbsRequest<SDIGetTrackPr
 		url += "?" + SDIServerUtil.buildUrlParameterString(parameters);
 
 		CacheEntryRequestParams params = new CacheEntryRequestParams(queue, Method.GET, url);
+		addUserAgent(params);
 		CacheEntryResponse<String> response = VolleyUtil.executeStringRequest(params);
 
 		// throw an exception if the response is invalid

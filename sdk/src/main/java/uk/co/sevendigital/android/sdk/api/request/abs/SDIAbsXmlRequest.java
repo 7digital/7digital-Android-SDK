@@ -56,23 +56,23 @@ public abstract class SDIAbsXmlRequest<T> extends SDIAbsRequest<T> {
 		@Element(name = "title") public String mTitle;
 		@Element(name = "version", required = false) public String mVersion;
 		@Element(name = "type") public String mType;
-		@Element(name = "barcode") public String mBarcode;
-		@Element(name = "year") public int mYear;
-		@Element(name = "explicitContent") public boolean mExplicitContent;
+		@Element(name = "barcode",required = false) public String mBarcode;
+		@Element(name = "year",required = false) public int mYear;
+		@Element(name = "explicitContent",required = false) public boolean mExplicitContent;
 		@Element(name = "artist") public XMLArtist mArtist;
-		@Element(name = "url") public String mUrl;
-		@Element(name = "image") public String mImage;
-		@Element(name = "price") public XMLPrice mPrice;
-		@Element(name = "releaseDate") public Date mReleaseDate;
-		@Element(name = "addedDate") public Date mAddedDate;
+		@Element(name = "url",required = false) public String mUrl;
+		@Element(name = "image",required = false) public String mImage;
+		@Element(name = "price",required = false) public XMLPrice mPrice;
+		@Element(name = "releaseDate",required = false) public Date mReleaseDate;
+		@Element(name = "addedDate",required = false) public Date mAddedDate;
 		//todo: when api is fixed
 		//		@ElementList(name = "formats") public List<Object> mFormats;
-		@Element(name = "label") public XMLLabel mLabel;
-		@Element(name = "licensor") public XMLLicensor mLicensor;
-		@Element(name = "streamingReleaseDate") public Date mStreamingReleaseDate;
-		@Element(name = "popularity") public Double mPopularity;
-		@Element(name = "duration") public int mDuration;
-		@Element(name = "trackCount") public int mTrackCount;
+		@Element(name = "label",required = false) public XMLLabel mLabel;
+		@Element(name = "licensor",required = false) public XMLLicensor mLicensor;
+		@Element(name = "streamingReleaseDate",required = false) public Date mStreamingReleaseDate;
+		@Element(name = "popularity",required = false) public Double mPopularity;
+		@Element(name = "duration",required = false) public int mDuration;
+		@Element(name = "trackCount",required = false) public int mTrackCount;
 
 		@Override public String getExternalId() {
 			return mExternalId;
@@ -202,13 +202,13 @@ public abstract class SDIAbsXmlRequest<T> extends SDIAbsRequest<T> {
 		@Element(name = "version", required = false) public String mVersion;
 		@Element(name = "artist", required = false) public XMLArtist mArtist;
 		@Element(name = "price", required = false) public XMLPrice mPrice;
-		@Element(name = "trackNumber") public int mTrackNumber;
-		@Element(name = "duration") public int mDuration;
-		@Element(name = "explicitContent") public boolean mExplicitContent;
-		@Element(name = "isrc") public String mIsrc;
-		@Element(name = "type") public String mType;
-		@Element(name = "url") public String mUrl;
-		@Element(name = "streamingReleaseDate") public Date mStreamingReleaseDate;
+		@Element(name = "trackNumber",required = false) public int mTrackNumber;
+		@Element(name = "duration",required = false) public int mDuration;
+		@Element(name = "explicitContent",required = false) public boolean mExplicitContent;
+		@Element(name = "isrc",required = false) public String mIsrc;
+		@Element(name = "type",required = false) public String mType;
+		@Element(name = "url",required = false) public String mUrl;
+		@Element(name = "streamingReleaseDate",required = false) public Date mStreamingReleaseDate;
 
 		@Override public String getExternalId() {
 			return mExternalId;

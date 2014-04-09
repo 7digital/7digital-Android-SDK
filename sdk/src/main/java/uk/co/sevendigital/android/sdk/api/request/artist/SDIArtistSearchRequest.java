@@ -19,11 +19,11 @@ import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
+import uk.co.sevendigital.android.sdk.api.object.SDIArtist;
+import uk.co.sevendigital.android.sdk.api.object.SDISearchResults;
 import uk.co.sevendigital.android.sdk.api.request.abs.SDIAbsJsonRequest;
 import uk.co.sevendigital.android.sdk.core.SDIConstants;
 import uk.co.sevendigital.android.sdk.core.SDICore;
-import uk.co.sevendigital.android.sdk.api.object.SDIArtist;
-import uk.co.sevendigital.android.sdk.api.object.SDISearchResults;
 import uk.co.sevendigital.android.sdk.util.SDIOauthHelper;
 import uk.co.sevendigital.android.sdk.util.SDIServerUtil;
 
@@ -179,6 +179,7 @@ public final class SDIArtistSearchRequest extends SDIAbsJsonRequest<SDIArtistSea
 
 		CacheEntryRequestParams params = new CacheEntryRequestParams(queue, Method.GET, url);
 		params.addHeader("Accept", "application/json");
+		addUserAgent(params);
 
 		CacheEntryResponse<String> response = VolleyUtil.executeStringRequest(params);
 

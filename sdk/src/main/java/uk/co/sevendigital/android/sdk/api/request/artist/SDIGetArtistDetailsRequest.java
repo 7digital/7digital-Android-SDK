@@ -86,6 +86,7 @@ public final class SDIGetArtistDetailsRequest extends SDIAbsXmlRequest<SDIGetArt
 		url += "?" + SDIServerUtil.buildUrlParameterString(parameters);
 
 		CacheEntryRequestParams params = new CacheEntryRequestParams(queue, Method.GET, url);
+		addUserAgent(params);
 		//params.addHeader("Accept", "application/json");//this endpoint only supports xml right now
 
 		CacheEntryResponse<String> response = VolleyUtil.executeStringRequest(params);

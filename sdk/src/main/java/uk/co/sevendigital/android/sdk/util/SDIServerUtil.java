@@ -13,6 +13,7 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.AbstractHttpMessage;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.params.BasicHttpParams;
+import org.apache.http.params.CoreProtocolPNames;
 import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.params.HttpParams;
 
@@ -22,6 +23,8 @@ import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+
+import uk.co.sevendigital.android.sdk.core.SDIConstants;
 
 public class SDIServerUtil {
 	private static final int DEFAULT_CONNECTION_TIMEOUT = 30000;
@@ -38,6 +41,7 @@ public class SDIServerUtil {
 	 */
 	public static HttpClient getHttpClient() {
 		DefaultHttpClient client = new DefaultHttpClient(getDefaultParams());
+		client.getParams().setParameter(CoreProtocolPNames.USER_AGENT, SDIConstants.USER_AGENT);
 		return client;
 	}
 
@@ -48,6 +52,7 @@ public class SDIServerUtil {
 	 */
 	public static HttpClient getHttpClient(HttpParams params) {
 		DefaultHttpClient client = new DefaultHttpClient(params);
+		client.getParams().setParameter(CoreProtocolPNames.USER_AGENT, SDIConstants.USER_AGENT);
 		return client;
 	}
 
@@ -58,6 +63,7 @@ public class SDIServerUtil {
 	 */
 	public static HttpClient getHttpClient(ClientConnectionManager conman, HttpParams params) {
 		HttpClient client = new DefaultHttpClient(conman, params);
+		client.getParams().setParameter(CoreProtocolPNames.USER_AGENT, SDIConstants.USER_AGENT);
 		return client;
 	}
 

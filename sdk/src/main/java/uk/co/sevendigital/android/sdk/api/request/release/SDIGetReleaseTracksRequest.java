@@ -163,6 +163,7 @@ public final class SDIGetReleaseTracksRequest extends SDIAbsXmlRequest<SDIGetRel
 		url += "?" + SDIServerUtil.buildUrlParameterString(parameters);
 
 		CacheEntryRequestParams params = new CacheEntryRequestParams(queue, Method.GET, url);
+		addUserAgent(params);
 		//params.addHeader("Accept", "application/json");//only xml available for this request
 
 		CacheEntryResponse<String> response = VolleyUtil.executeStringRequest(params);

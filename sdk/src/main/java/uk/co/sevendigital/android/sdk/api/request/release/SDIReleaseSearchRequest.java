@@ -178,6 +178,7 @@ public final class SDIReleaseSearchRequest extends SDIAbsJsonRequest<SDIReleaseS
 
 		CacheEntryRequestParams params = new CacheEntryRequestParams(queue, Method.GET, url);
 		params.addHeader("Accept", "application/json");
+		addUserAgent(params);
 
 		CacheEntryResponse<String> response = VolleyUtil.executeStringRequest(params);
 

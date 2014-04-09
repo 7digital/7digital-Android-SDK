@@ -1,8 +1,12 @@
 package uk.co.sevendigital.android.sdk.core;
 
+import org.apache.http.params.CoreProtocolPNames;
+
 public class SDIConstants {
 
 	public static final String TAG = "SDISDK";
+
+	public static final String USER_AGENT = "7Digital Android SDK";
 
 	public static final String SERVER_BASE_URL = "http://api.7digital.com/1.2";
 	public static final String SERVER_BASE_ACCOUNT_URL = "https://api.7digital.com/1.2";
