@@ -1,12 +1,24 @@
 package uk.co.sevendigital.android.sdk.core;
 
-import org.apache.http.params.CoreProtocolPNames;
+import android.os.Build;
+
+import uk.co.sevendigital.android.sdk.BuildConfig;
 
 public class SDIConstants {
 
 	public static final String TAG = "SDISDK";
 
-	public static final String USER_AGENT = "7Digital Android SDK";
+	public static final String USER_AGENT;
+
+	static {
+		StringBuilder sb = new StringBuilder();
+		sb.append("7digital Android SDK");
+		sb.append("/");
+		sb.append(BuildConfig.VERSION_NAME);
+		sb.append("; ");
+		sb.append(Build.MODEL);
+		USER_AGENT = sb.toString();
+	}
 
 	public static final String SERVER_BASE_URL = "http://api.7digital.com/1.2";
 	public static final String SERVER_BASE_ACCOUNT_URL = "https://api.7digital.com/1.2";

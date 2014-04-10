@@ -7,8 +7,8 @@ android {
     defaultConfig {
         minSdkVersion 8
         targetSdkVersion 19
-        versionCode 1
-        versionName "0.9"
+        versionCode 2
+        versionName "0.91"
 
         buildConfigField "String", "TEST_USER_EMAIL", TEST_USER_EMAIL
         buildConfigField "String", "TEST_USER_PASSWORD", TEST_USER_PASSWORD
