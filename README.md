@@ -6,7 +6,7 @@ Full SDK documentation is available at http://7digital.github.io/7digital-Androi
 
 ## Getting Started ##
 
-1. Register as a developer to get a key and secret at http://access.7digital.com/partnerprogram
+1. Register as a developer to get a key and secret at https://api-signup.7digital.com
 
 2. Clone the repository, which includes a sample app
 
