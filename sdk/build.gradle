@@ -2,13 +2,13 @@ apply plugin: 'android-library'
 
 android {
     compileSdkVersion 19
-    buildToolsVersion "19.0.3"
+    buildToolsVersion "19.1.0"
 
     defaultConfig {
         minSdkVersion 8
         targetSdkVersion 19
-        versionCode 2
-        versionName "0.91"
+        versionCode 3
+        versionName "0.92"
 
         buildConfigField "String", "TEST_USER_EMAIL", TEST_USER_EMAIL
         buildConfigField "String", "TEST_USER_PASSWORD", TEST_USER_PASSWORD
@@ -35,6 +35,38 @@ android {
         exclude 'META-INF/NOTICE'
     }
 }
+    android.libraryVariants.all { variant ->
+        def name = variant.buildType.name
+        if (name.equals(com.android.builder.core.BuilderConstants.DEBUG)) {
+            return; // Skip debug builds.
+        }
+
+        /**
+         * This task creates a (slim) jar that just includes the 7DI SDK
+         */
+        def slimJar = project.tasks.create "jar${name.capitalize()}", Jar
+        slimJar.dependsOn variant.javaCompile
+        slimJar.archiveName = "7digital-android-sdk-vX.XX.jar"
+        slimJar.from variant.javaCompile.destinationDir
+
+        /**
+         * This task creates a fat jar that includes all compiled dependencies as well
+         */
+        def fatJar = project.tasks.create "jarWithDependencies${name.capitalize()}", Jar
+        fatJar.dependsOn slimJar
+        fatJar.from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+        fatJar.with slimJar
+
+        //These files need to be excluded from the jar because they throw errors when an android project
+        //references this jar
+        fatJar.exclude 'classes.jar'
+        fatJar.exclude 'AndroidManifest.xml'
+        //set the output name
+        fatJar.archiveName = "7digital-android-sdk-vX.XX-withDependencies.jar"
+
+        
+        artifacts.add('archives', slimJar);
+    }
 
 dependencies {
 

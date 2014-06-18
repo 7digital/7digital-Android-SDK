@@ -140,7 +140,7 @@ public class TrackChartsFragment extends ListFragment {
 			super.onPostExecute(chart);
 			if (!isAdded()) return;
 			mChartItems.clear();
-			mChartItems.addAll(chart.getItems());
+			if (null!=chart)mChartItems.addAll(chart.getItems());
 			mAdapter.notifyDataSetChanged();
 
 			mDataLoaded = true;
