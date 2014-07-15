@@ -18,7 +18,7 @@ Full SDK documentation is available at http://7digital.github.io/7digital-Androi
 			compile project(':sdk')
 		}
 
-5. Alternatively, a compiled .aar is available in the Releases tab.
+5. Alternatively, a compiled .aar or .jar is available in the Releases tab.
 
 
 Note: The 7digital Android SDK depends on Volley. Volley will also need to be added as a dependency (a module) in your app.
