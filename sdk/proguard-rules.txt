@@ -15,3 +15,17 @@
 #-keepclassmembers class fqcn.of.javascript.interface.for.webview {
 #   public *;
 #}
+
+## Jackson
+-keepnames class org.codehaus.** { *; }
+-keepattributes *Annotation*,EnclosingMethod
+-dontwarn org.codehaus.jackson.**
+-dontwarn com.fasterxml.jackson.**
+
+## Volley
+-keep class com.android.volley.**{ *; }
+
+## 7Digital keep all model and object classes and interfaces for xml and json parsing.
+-keep class uk.co.sevendigital.android.sdk.api.object.** { *; }
+-keep class uk.co.sevendigital.android.sdk.model.** { *; }
+-keep interface uk.co.sevendigital.android.sdk.model.base.** { *; }
