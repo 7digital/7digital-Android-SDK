@@ -17,15 +17,29 @@
 #}
 
 ## Jackson
+-keep public class org.w3c.** {public private protected *;}
+-dontwarn org.w3c.**
 -keepnames class org.codehaus.** { *; }
 -keepattributes *Annotation*,EnclosingMethod
 -dontwarn org.codehaus.jackson.**
 -dontwarn com.fasterxml.jackson.**
+-keepattributes Signature
+
+## LIBRARY: Simple framework
+-keep public class org.simpleframework.**{ *; }
+-keep class org.simpleframework.xml.**{ *; }
+-keep class org.simpleframework.xml.core.**{ *; }
+-keep class org.simpleframework.xml.util.**{ *; }
 
 ## Volley
 -keep class com.android.volley.**{ *; }
 
-## 7Digital keep all model and object classes and interfaces for xml and json parsing.
+## 7Digital
 -keep class uk.co.sevendigital.android.sdk.api.object.** { *; }
 -keep class uk.co.sevendigital.android.sdk.model.** { *; }
 -keep interface uk.co.sevendigital.android.sdk.model.base.** { *; }
+-keep class uk.co.sevendigital.android.sdk.api.request.** { *; }
+
+## Joda time
+-keep public class org.joda.time.** {public private protected *;}
+-dontwarn org.joda.time.**
