@@ -10,10 +10,10 @@ android {
         versionCode 3
         versionName "0.92"
 
-        buildConfigField "String", "TEST_USER_EMAIL", TEST_USER_EMAIL
-        buildConfigField "String", "TEST_USER_PASSWORD", TEST_USER_PASSWORD
-        buildConfigField "String", "TEST_OAUTH_CONSUMER_KEY", TEST_OAUTH_CONSUMER_KEY
-        buildConfigField "String", "TEST_OAUTH_CONSUMER_SECRET", TEST_OAUTH_CONSUMER_SECRET
+        buildConfigField "String", "TEST_USER_EMAIL", "\"TEST_USER_EMAIL\""
+        buildConfigField "String", "TEST_USER_PASSWORD", "\"TEST_USER_PASSWORD\""
+        buildConfigField "String", "TEST_OAUTH_CONSUMER_KEY", "\"TEST_OAUTH_CONSUMER_KEY\""
+        buildConfigField "String", "TEST_OAUTH_CONSUMER_SECRET", "\"TEST_OAUTH_CONSUMER_SECRET\""
 
     }
     buildTypes {

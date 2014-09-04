@@ -1,6 +1,8 @@
 package uk.co.sevendigital.android.sdk.api.request.preview;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.Pair;
 
@@ -34,27 +36,27 @@ public final class SDIGetTrackPreviewRequest extends SDIAbsRequest<SDIGetTrackPr
 	 *
 	 * Get a track preview for a track
 	 *
-	 * @param context
+	 * @param context the application context.
 	 * @param consumer the OauthConsumer credentials for this call
 	 * @param queue the volley request queue to use for this call
-	 * @param token the server access token
+	 * @param token the server access token (optional)
 	 * @param trackId the unique id of the track to preview
-	 * @return
+	 *
+	 * @return the result of the request
+	 *
 	 * @throws InterruptedException
 	 * @throws ExecutionException
 	 * @throws IOException
 	 * @throws SignatureException
 	 */
-	public static Result execute(Context context, SDIServerUtil.OauthConsumer consumer,RequestQueue queue,
-			SDIServerUtil.ServerAccessToken token, final String trackId) throws InterruptedException, ExecutionException, IOException,
-			SignatureException {
+	@SuppressWarnings("ConstantConditions") public static Result execute(@NonNull Context context,
+			@NonNull SDIServerUtil.OauthConsumer consumer, @NonNull RequestQueue queue, @Nullable SDIServerUtil.ServerAccessToken token,
+			@NonNull final String trackId) throws InterruptedException, ExecutionException, IOException, SignatureException {
 
 		if (context == null) throw new NullPointerException("context cannot be null");
 		if (consumer == null) throw new NullPointerException("consumer cannot be null");
 		if (queue == null) queue = SDICore.getQueue(context);
-		if (consumer == null) throw new NullPointerException("consumer cannot be null");
-		if (token == null) throw new IllegalArgumentException("token must be provided");
-		if (trackId == null) throw new IllegalArgumentException("Track Id must be provided");
+		if (trackId == null) throw new IllegalArgumentException("track id must be provided");
 
 		String timestamp = SDIOauthHelper.getServerTime(SDIServerUtil.getHttpClient(), consumer.toTuple());
 		String nonce = SDIOauthHelper.getNonce();
@@ -88,7 +90,7 @@ public final class SDIGetTrackPreviewRequest extends SDIAbsRequest<SDIGetTrackPr
 		String data = response.getResponse();
 
 		// return if the response is invalid
-		if (data != null && TextUtils.isEmpty(data)) return new Result(ResultCode.FAILURE_UNKNOWN);
+		if (TextUtils.isEmpty(data)) return new Result(ResultCode.FAILURE_UNKNOWN);
 
 		return new Result(ResultCode.SUCCESS, response.getCacheEntry(), data.getBytes());
 	}
