@@ -5,6 +5,7 @@ import android.os.Parcel;
 import uk.co.sevendigital.android.sdk.model.base.Artist;
 
 public class SDIArtist implements Artist, android.os.Parcelable {
+	private static final long serialVersionUID = 6636541149543121580L;
 
 	public SDIArtist() {}
 
