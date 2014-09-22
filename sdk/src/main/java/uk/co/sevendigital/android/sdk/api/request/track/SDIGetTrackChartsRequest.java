@@ -1,19 +1,5 @@
 package uk.co.sevendigital.android.sdk.api.request.track;
 
-import android.content.Context;
-import android.util.Pair;
-
-import com.android.volley.Cache;
-import com.android.volley.Request.Method;
-import com.android.volley.RequestQueue;
-import com.android.volley.VolleyUtil;
-import com.android.volley.VolleyUtil.CacheEntryRequestParams;
-import com.android.volley.VolleyUtil.CacheEntryResponse;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 import java.io.IOException;
 import java.security.SignatureException;
 import java.util.ArrayList;
@@ -21,14 +7,26 @@ import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
-import uk.co.sevendigital.android.sdk.api.request.abs.SDIAbsJsonRequest;
-import uk.co.sevendigital.android.sdk.core.SDIConstants;
-import uk.co.sevendigital.android.sdk.core.SDICore;
 import uk.co.sevendigital.android.sdk.api.object.SDIChart;
 import uk.co.sevendigital.android.sdk.api.object.SDIChartItem;
 import uk.co.sevendigital.android.sdk.api.object.SDITrack;
+import uk.co.sevendigital.android.sdk.api.request.abs.SDIAbsJsonRequest;
+import uk.co.sevendigital.android.sdk.core.SDIConstants;
+import uk.co.sevendigital.android.sdk.core.SDICore;
 import uk.co.sevendigital.android.sdk.util.SDIOauthHelper;
 import uk.co.sevendigital.android.sdk.util.SDIServerUtil;
+import uk.co.sevendigital.android.sdk.util.VolleyUtil;
+
+import android.content.Context;
+import android.util.Pair;
+
+import com.android.volley.Cache;
+import com.android.volley.Request.Method;
+import com.android.volley.RequestQueue;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 public final class SDIGetTrackChartsRequest extends SDIAbsJsonRequest<SDIGetTrackChartsRequest.Result> {
 	private static final String EXTRA_SERVER_ACCESS_TOKEN = "extra_server_access_token";
@@ -130,11 +128,11 @@ public final class SDIGetTrackChartsRequest extends SDIAbsJsonRequest<SDIGetTrac
 		url += "?" + SDIServerUtil.buildUrlParameterString(parameters);
 		//parameters.add(new Pair<String, String>("dataType", "json")); //todo: not supported by the api yet
 
-		CacheEntryRequestParams params = new CacheEntryRequestParams(queue, Method.GET, url);
+		VolleyUtil.CacheEntryRequestParams params = new VolleyUtil.CacheEntryRequestParams(queue, Method.GET, url);
 		params.addHeader("Accept", "application/json");
 		addUserAgent(params);
 
-		CacheEntryResponse<String> response = VolleyUtil.executeStringRequest(params);
+		VolleyUtil.CacheEntryResponse<String> response = VolleyUtil.executeStringRequest(params);
 
 		// throw an exception if the response is invalid
 		if (response == null || response.getResponse() == null) throw new IllegalStateException("response invalid: " + response);

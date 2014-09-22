@@ -1,4 +1,4 @@
-apply plugin: 'android-library'
+apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion 19
@@ -81,7 +81,7 @@ dependencies {
     compile 'com.fasterxml.jackson.core:jackson-databind:2.3.1'
     compile 'com.fasterxml.jackson.core:jackson-annotations:2.3.1'
 
-    compile 'com.android.volley:volley:+@aar'
+    provided 'com.mcxiaoke.volley:library:1.0.6'
 
     compile 'joda-time:joda-time:2.3'
     compile fileTree(dir: 'libs', include: ['*.jar'])

@@ -2,12 +2,13 @@ package uk.co.sevendigital.android.sdk.sample.app;
 
 import uk.co.sevendigital.android.sdk.api.SDIApi;
 import uk.co.sevendigital.android.sdk.util.SDIServerUtil;
+import uk.co.sevendigital.android.sdk.util.VolleyUtil;
+
 import android.app.ActivityManager;
 import android.app.Application;
 import android.content.Context;
 
 import com.android.volley.RequestQueue;
-import com.android.volley.VolleyUtil;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.Volley;
 

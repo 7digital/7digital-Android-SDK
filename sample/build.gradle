@@ -1,4 +1,4 @@
-apply plugin: 'android'
+apply plugin: 'com.android.application'
 
 android {
     aaptOptions.useAaptPngCruncher = true
@@ -40,5 +40,6 @@ dependencies {
     compile project(':sdk')
     compile 'com.jakewharton:butterknife:4.+'
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.volley:volley:+@aar'
+
+    compile 'com.mcxiaoke.volley:library:1.0.6'
 }
