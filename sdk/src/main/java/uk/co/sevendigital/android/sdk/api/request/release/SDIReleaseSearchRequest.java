@@ -6,9 +6,6 @@ import android.util.Pair;
 import com.android.volley.Cache;
 import com.android.volley.Request.Method;
 import com.android.volley.RequestQueue;
-import com.android.volley.VolleyUtil;
-import com.android.volley.VolleyUtil.CacheEntryRequestParams;
-import com.android.volley.VolleyUtil.CacheEntryResponse;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -25,6 +22,7 @@ import uk.co.sevendigital.android.sdk.api.object.SDIRelease;
 import uk.co.sevendigital.android.sdk.api.object.SDISearchResults;
 import uk.co.sevendigital.android.sdk.util.SDIOauthHelper;
 import uk.co.sevendigital.android.sdk.util.SDIServerUtil;
+import uk.co.sevendigital.android.sdk.util.VolleyUtil;
 
 public final class SDIReleaseSearchRequest extends SDIAbsJsonRequest<SDIReleaseSearchRequest.Result> {
 
@@ -176,11 +174,11 @@ public final class SDIReleaseSearchRequest extends SDIAbsJsonRequest<SDIReleaseS
 		// build full url
 		url += "?" + SDIServerUtil.buildUrlParameterString(parameters);
 
-		CacheEntryRequestParams params = new CacheEntryRequestParams(queue, Method.GET, url);
+		VolleyUtil.CacheEntryRequestParams params = new VolleyUtil.CacheEntryRequestParams(queue, Method.GET, url);
 		params.addHeader("Accept", "application/json");
 		addUserAgent(params);
 
-		CacheEntryResponse<String> response = VolleyUtil.executeStringRequest(params);
+		VolleyUtil.CacheEntryResponse<String> response = VolleyUtil.executeStringRequest(params);
 
 		// throw an exception if the response is invalid
 		if (response == null || response.getResponse() == null) throw new IllegalStateException("response invalid: " + response);
