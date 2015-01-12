@@ -20,12 +20,6 @@ Full SDK documentation is available at http://7digital.github.io/7digital-Androi
 
 5. Alternatively, a compiled .aar or .jar is available in the Releases tab.
 
-
-**Note:** The 7digital Android SDK depends on a modified version of Volley which can be found at [7digital-Android-SDK/libs/volley-1.0.0.aar](libs/)
-
-Volley will also need to be added as a dependency (a module) in your app. 
-The SDK is already setup to compile this file using a flatDir maven repository.
-
 ## Adding Purchasing to Your App ##
 
 To add purchasing simply integrate the 7digital Buy Button. This takes care of the checkout and music download process without sending users away to another site. For an example app, see the [sample 7digital buy button app.](https://github.com/7digital/7digital-android-buy-button-demo) 
