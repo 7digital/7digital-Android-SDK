@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -19,6 +20,7 @@ import uk.co.sevendigital.android.sdk.api.request.track.SDIGetTrackDetailsReques
 import uk.co.sevendigital.android.sdk.sample.R;
 import uk.co.sevendigital.android.sdk.sample.app.SampleApplication;
 import uk.co.sevendigital.android.sdk.api.object.SDITrack;
+import uk.co.sevendigital.android.sdk.sample.util.CoverHelper;
 
 /**
  * Demonstrates how to load metadata and details for a track
@@ -26,7 +28,7 @@ import uk.co.sevendigital.android.sdk.api.object.SDITrack;
 public class TrackDetailFragment extends Fragment {
 
 	@InjectView(R.id.title_textview) TextView mTitleTextview;
-	@InjectView(R.id.image_imageview) NetworkImageView mImageImageview;
+	@InjectView(R.id.image_imageview) ImageView mImageImageview;
 	@InjectView(R.id.content) View mContent;
 	@InjectView(R.id.progressBar) ProgressBar mProgressBar;
 
@@ -73,7 +75,7 @@ public class TrackDetailFragment extends Fragment {
 		mTitleTextview.setText(mTrack.getTitle());
 
 		if (null != mTrack && null != mTrack.getRelease()) {
-			SampleApplication.getImageLoader().get(mTrack.getRelease().getImageUrl(),
+			SampleApplication.getImageLoader().get(CoverHelper.swapSizedImageUrlSize(mTrack.getRelease().getImageUrl(),350),
 					ImageLoader.getImageListener(mImageImageview, R.drawable.placeholder_image, R.drawable.placeholder_image));
 		}
 	}

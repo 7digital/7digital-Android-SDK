@@ -9,12 +9,6 @@ import javax.net.ssl.X509TrustManager;
 
 public class Utils {
 
-//	public static final String TEST_USER_EMAIL = "";
-//	public static final String TEST_USER_PASSWORD = "";
-//
-//	public static final String TEST_OAUTH_CONSUMER_KEY = "";
-//	public static final String TEST_OAUTH_CONSUMER_SECRET = "";
-
 	public static void trustSelfSignedCertificates() {
 		TrustManager[] trustAllCerts = new TrustManager[] { new X509TrustManager() {
 			public java.security.cert.X509Certificate[] getAcceptedIssuers() {

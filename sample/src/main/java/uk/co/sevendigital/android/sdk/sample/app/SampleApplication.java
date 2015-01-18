@@ -1,6 +1,7 @@
 package uk.co.sevendigital.android.sdk.sample.app;
 
 import uk.co.sevendigital.android.sdk.api.SDIApi;
+import uk.co.sevendigital.android.sdk.sample.BuildConfig;
 import uk.co.sevendigital.android.sdk.util.SDIServerUtil;
 import uk.co.sevendigital.android.sdk.util.VolleyUtil;
 
@@ -29,7 +30,7 @@ public class SampleApplication extends Application {
 		sImageLoader = new ImageLoader(sRequestQueue, new VolleyUtil.BitmapLruCache(cacheSize));
 
 		/* setup the api, with our oauth consumer key and secret*/
-		sOauthConsumer = new SDIServerUtil.OauthConsumer(Constants.OAUTH_CONSUMER_KEY, Constants.OAUTH_CONSUMER_SECRET);
+		sOauthConsumer = new SDIServerUtil.OauthConsumer(BuildConfig.TEST_OAUTH_CONSUMER_KEY, BuildConfig.TEST_OAUTH_CONSUMER_SECRET);
 		sSDIApi = new SDIApi(this, sRequestQueue, sOauthConsumer);
 	}
 
