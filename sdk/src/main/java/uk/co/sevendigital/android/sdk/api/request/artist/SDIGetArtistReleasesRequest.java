@@ -257,6 +257,6 @@ public final class SDIGetArtistReleasesRequest extends SDIAbsJsonRequest<SDIGetA
 		@JsonProperty("page") private int mPage;
 		@JsonProperty("pageSize") private int mPageSize;
 		@JsonProperty("totalItems") private int mTotalItems;
-		@JsonProperty("release") private List<JsonRelease> mItems;
+		@JsonProperty("releases") private List<JsonRelease> mItems;
 	}
 }
