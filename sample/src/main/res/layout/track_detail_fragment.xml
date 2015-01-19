@@ -22,10 +22,20 @@
 			android:id="@+id/title_textview"
 			android:layout_width="wrap_content"
 			tools:text="Uptown funk"
+			android:layout_marginBottom="32dp"
 			android:layout_alignParentLeft="true"
 			android:fontFamily="sans-serif-light"
 			android:layout_toLeftOf="@+id/image_imageview"
 			android:textAppearance="?android:attr/textAppearanceLarge"
+			android:layout_height="wrap_content" />
+
+		<Button
+			android:id="@+id/preview_button"
+			android:layout_below="@+id/title_textview"
+			android:visibility="gone"
+			android:layout_alignParentLeft="true"
+			android:layout_width="wrap_content"
+			android:text="Preview"
 			android:layout_height="wrap_content" />
 
 		<ImageView
