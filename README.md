@@ -20,10 +20,19 @@ Full SDK documentation is available at http://7digital.github.io/7digital-Androi
 
 5. Alternatively, a compiled .aar or .jar is available in the Releases tab.
 
+ 
+## Running the sample ##
+
+To run the sample, or any of the sdk tests, you must add your test credentials to the projects gradle.properties file.
+
+A sample gradle.properties file (**gradle.properties.sample**)
+ is included.
+ 
+ Copy these varibles to your gradle.properties file and fill in your 7digital credentials.
+ 
 ## Adding Purchasing to Your App ##
 
-To add purchasing simply integrate the 7digital Buy Button. This takes care of the checkout and music download process without sending users away to another site. For an example app, see the [sample 7digital buy button app.](https://github.com/7digital/7digital-android-buy-button-demo) 
-
+To add purchasing simply integrate the 7digital Buy Button. This takes care of the checkout and music download process without sending users away to another site. For an example app, see the [sample 7digital buy button app.](https://github.com/7digital/7digital-android-buy-button-demo)
 
 
 

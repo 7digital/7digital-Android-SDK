@@ -535,8 +535,27 @@ public class SDIApi {
 
 		/**
 		 * Get the url of a track preview
+		 *
+		 * @param trackId - id of the track get preview
 		 * 
-		 * @return the url for a track preview
+		 * @return the bytes for the track preview
+		 */
+		public SDIGetTrackPreviewRequest.Result getTrackPreview(@NonNull String trackId)
+				throws InterruptedException, ExecutionException, SignatureException, IOException {
+			return getTrackPreview(null, trackId);
+		}
+
+		/**
+		 *
+		 * Get the url of a track preview
+		 *
+		 * @param token a authenticated token for a logged in user
+		 * @param trackId - the bytes for the track preview
+		 * @return
+		 * @throws InterruptedException
+		 * @throws ExecutionException
+		 * @throws SignatureException
+		 * @throws IOException
 		 */
 		public SDIGetTrackPreviewRequest.Result getTrackPreview(@Nullable SDIServerUtil.ServerAccessToken token, @NonNull String trackId)
 				throws InterruptedException, ExecutionException, SignatureException, IOException {

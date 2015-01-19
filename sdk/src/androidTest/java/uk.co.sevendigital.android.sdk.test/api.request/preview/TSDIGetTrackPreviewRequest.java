@@ -20,7 +20,7 @@ public class TSDIGetTrackPreviewRequest extends AndroidTestCase {
 	 * test: get user playlists
 	 * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
-	public void testGetTrackPreview() throws Exception {
+	public void testAuthenticatedGetTrackPreview() throws Exception {
 		Utils.trustSelfSignedCertificates();
 
 		// attempt to login the user
@@ -39,6 +39,15 @@ public class TSDIGetTrackPreviewRequest extends AndroidTestCase {
 		assertEquals(SDIGetTrackPreviewRequest.ResultCode.SUCCESS, result.getResultCode());
 	}
 
+	public void testGetTrackPreview() throws Exception {
+		Utils.trustSelfSignedCertificates();
+
+		SDIGetTrackPreviewRequest.Result result = getTrackPreview(getContext(),"1234");
+
+		// assert the request was successful
+		assertEquals(SDIGetTrackPreviewRequest.ResultCode.SUCCESS, result.getResultCode());
+	}
+
 	/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 	 * get user playlists
 	 * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
@@ -52,6 +61,20 @@ public class TSDIGetTrackPreviewRequest extends AndroidTestCase {
 				BuildConfig.TEST_OAUTH_CONSUMER_SECRET));
 		//do the request
 		return api.streaming().getTrackPreview(authorisedAccessToken, trackId);
+	}
+
+	/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+	 * get user playlists
+	 * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+
+	protected static SDIGetTrackPreviewRequest.Result getTrackPreview(Context context, String trackId) throws SignatureException, InterruptedException,
+			ExecutionException, IOException {
+
+		//construct new api client
+		SDIApi api = new SDIApi(context, new SDIServerUtil.OauthConsumer(BuildConfig.TEST_OAUTH_CONSUMER_KEY,
+				BuildConfig.TEST_OAUTH_CONSUMER_SECRET));
+		//do the request
+		return api.streaming().getTrackPreview(trackId);
 	}
 
 }
