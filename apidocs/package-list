@@ -9,5 +9,11 @@ uk.co.sevendigital.android.sdk.api.request.track
 uk.co.sevendigital.android.sdk.core
 uk.co.sevendigital.android.sdk.model
 uk.co.sevendigital.android.sdk.model.base
+uk.co.sevendigital.android.sdk.sample.activity
+uk.co.sevendigital.android.sdk.sample.app
+uk.co.sevendigital.android.sdk.sample.fragment
+uk.co.sevendigital.android.sdk.sample.fragment.detail
+uk.co.sevendigital.android.sdk.sample.fragment.search
+uk.co.sevendigital.android.sdk.sample.util
 uk.co.sevendigital.android.sdk.util
 uk.co.sevendigital.android.sdk.util.external
