@@ -44,6 +44,8 @@ android {
         exclude 'META-INF/NOTICE'
     }
 }
+
+    //to create jar releases, run ./gradlew jarWithDependenciesRelease, or ./gradlew jarRelease
     android.libraryVariants.all { variant ->
         def name = variant.buildType.name
         if (name.equals(com.android.builder.core.BuilderConstants.DEBUG)) {
@@ -55,7 +57,7 @@ android {
          */
         def slimJar = project.tasks.create "jar${name.capitalize()}", Jar
         slimJar.dependsOn variant.javaCompile
-        slimJar.archiveName = "7digital-android-sdk-vX.XX.jar"
+        slimJar.archiveName = "7digital-android-sdk-v${variant.mergedFlavor.versionName}.jar"
         slimJar.from variant.javaCompile.destinationDir
 
         /**
@@ -71,7 +73,7 @@ android {
         fatJar.exclude 'classes.jar'
         fatJar.exclude 'AndroidManifest.xml'
         //set the output name
-        fatJar.archiveName = "7digital-android-sdk-vX.XX-withDependencies.jar"
+        fatJar.archiveName = "7digital-android-sdk-v${variant.mergedFlavor.versionName}-withDependencies.jar"
 
 
         artifacts.add('archives', slimJar);
