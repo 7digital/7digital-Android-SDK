@@ -11,6 +11,14 @@ android {
         versionCode 4
         versionName "0.93"
 
+        //check for properties in the gradle file, and warn the user
+        for (String property : ["TEST_USER_EMAIL","TEST_USER_PASSWORD","TEST_OAUTH_CONSUMER_KEY","TEST_OAUTH_CONSUMER_SECRET"]) {
+            if (!project.properties.containsKey(property)) {
+                throw new IllegalArgumentException("${property} property must be added to the projects gradle.properties file in order to" +
+                        " run the sdk. Refer to the readme for more information.")
+            }
+        }
+
         buildConfigField "String", "TEST_USER_EMAIL", "$TEST_USER_EMAIL"
         buildConfigField "String", "TEST_USER_PASSWORD", "$TEST_USER_PASSWORD"
         buildConfigField "String", "TEST_OAUTH_CONSUMER_KEY", "$TEST_OAUTH_CONSUMER_KEY"
