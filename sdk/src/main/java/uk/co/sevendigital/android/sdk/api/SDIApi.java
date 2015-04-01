@@ -540,9 +540,9 @@ public class SDIApi {
 		 * 
 		 * @return the bytes for the track preview
 		 */
-		public SDIGetTrackPreviewRequest.Result getTrackPreview(@NonNull String trackId)
+		public SDIGetTrackPreviewRequest.Result getTrackPreview(@NonNull String trackId, @NonNull String country)
 				throws InterruptedException, ExecutionException, SignatureException, IOException {
-			return getTrackPreview(null, trackId);
+			return getTrackPreview(null, trackId, country);
 		}
 
 		/**
@@ -557,9 +557,9 @@ public class SDIApi {
 		 * @throws SignatureException
 		 * @throws IOException
 		 */
-		public SDIGetTrackPreviewRequest.Result getTrackPreview(@Nullable SDIServerUtil.ServerAccessToken token, @NonNull String trackId)
+		public SDIGetTrackPreviewRequest.Result getTrackPreview(@Nullable SDIServerUtil.ServerAccessToken token, @NonNull String trackId, @NonNull String country)
 				throws InterruptedException, ExecutionException, SignatureException, IOException {
-			return SDIGetTrackPreviewRequest.execute(mContext, mConsumer, mRequestQueue, token, trackId);
+			return SDIGetTrackPreviewRequest.execute(mContext, mConsumer, mRequestQueue, token, trackId, country);
 		}
 	}
 }
