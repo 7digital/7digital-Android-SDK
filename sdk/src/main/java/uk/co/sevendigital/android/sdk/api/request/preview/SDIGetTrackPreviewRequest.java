@@ -49,13 +49,14 @@ public final class SDIGetTrackPreviewRequest extends SDIAbsRequest<SDIGetTrackPr
 	 */
 	@SuppressWarnings("ConstantConditions") public static Result execute(@NonNull Context context,
 			@NonNull SDIServerUtil.OauthConsumer consumer, @NonNull RequestQueue queue, @Nullable SDIServerUtil.ServerAccessToken token,
-			@NonNull final String trackId) throws InterruptedException, ExecutionException, IOException, SignatureException {
+			@NonNull final String trackId, @NonNull final String country) throws InterruptedException, ExecutionException, IOException, SignatureException {
 
 		if (context == null) throw new NullPointerException("context cannot be null");
 		if (consumer == null) throw new NullPointerException("consumer cannot be null");
 		if (queue == null) queue = SDICore.getQueue(context);
 		if (trackId == null) throw new IllegalArgumentException("track id must be provided");
-
+       		if (country == null) throw new IllegalArgumentException("country / shopId must be provided");
+       		
 		String timestamp = SDIOauthHelper.getServerTime(SDIServerUtil.getHttpClient(), consumer.toTuple());
 		String nonce = SDIOauthHelper.getNonce();
 
@@ -67,6 +68,7 @@ public final class SDIGetTrackPreviewRequest extends SDIAbsRequest<SDIGetTrackPr
 		parameters.add(new Pair<String, String>("oauth_signature_method", "HMAC-SHA1"));
 		parameters.add(new Pair<String, String>("oauth_timestamp", timestamp));
 		if (token != null) parameters.add(new Pair<String, String>("oauth_token", token.getToken()));
+		parameters.add(new Pair<String, String>("country", country));
 		Collections.sort(parameters, SDIServerUtil.SORT_ALPHABETICAL_BY_KEY);
 
 		// calculate and add the signature (if required)
