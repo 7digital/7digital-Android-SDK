@@ -127,7 +127,7 @@ public class TrackDetailFragment extends Fragment {
 			/* attempt to get track preview*/
 			byte[] preview = null;
 			try {
-				SDIGetTrackPreviewRequest.Result previewResult = api.streaming().getTrackPreview(trackId);
+				SDIGetTrackPreviewRequest.Result previewResult = api.streaming().getTrackPreview(trackId, "GB");
 				preview = previewResult.getTrackPreview();
 			} catch (Exception e) {
 				e.printStackTrace();

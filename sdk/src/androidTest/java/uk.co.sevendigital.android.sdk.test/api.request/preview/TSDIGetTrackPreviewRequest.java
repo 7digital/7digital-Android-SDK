@@ -1,4 +1,4 @@
-package uk.co.sevendigital.android.sdk.api.request.preview;
+package uk.co.sevendigital.android.sdk.test.api.request.preview;
 
 import java.io.IOException;
 import java.security.SignatureException;
@@ -7,6 +7,7 @@ import java.util.concurrent.ExecutionException;
 import uk.co.sevendigital.android.sdk.api.SDIApi;
 import uk.co.sevendigital.android.sdk.api.request.login.SDILoginUserRequest;
 import uk.co.sevendigital.android.sdk.api.request.login.TSDILoginUserRequest;
+import uk.co.sevendigital.android.sdk.api.request.preview.SDIGetTrackPreviewRequest;
 import uk.co.sevendigital.android.sdk.core.SDICore;
 import uk.co.sevendigital.android.sdk.test.BuildConfig;
 import uk.co.sevendigital.android.sdk.util.SDIServerUtil;
@@ -60,7 +61,7 @@ public class TSDIGetTrackPreviewRequest extends AndroidTestCase {
 		SDIApi api = new SDIApi(context, new SDIServerUtil.OauthConsumer(BuildConfig.TEST_OAUTH_CONSUMER_KEY,
 				BuildConfig.TEST_OAUTH_CONSUMER_SECRET));
 		//do the request
-		return api.streaming().getTrackPreview(authorisedAccessToken, trackId);
+		return api.streaming().getTrackPreview(trackId, "GB");
 	}
 
 	/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -74,7 +75,7 @@ public class TSDIGetTrackPreviewRequest extends AndroidTestCase {
 		SDIApi api = new SDIApi(context, new SDIServerUtil.OauthConsumer(BuildConfig.TEST_OAUTH_CONSUMER_KEY,
 				BuildConfig.TEST_OAUTH_CONSUMER_SECRET));
 		//do the request
-		return api.streaming().getTrackPreview(trackId);
+		return api.streaming().getTrackPreview(trackId, "GB");
 	}
 
 }
