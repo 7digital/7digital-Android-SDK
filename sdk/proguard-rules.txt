@@ -24,6 +24,12 @@
 -dontwarn org.codehaus.jackson.**
 -dontwarn com.fasterxml.jackson.**
 -keepattributes Signature
+-keep class com.fasterxml.** { *; }
+-keepattributes RuntimeVisibleAnnotations
+-keepclassmembers class * {
+     @com.fasterxml.jackson.annotation.JsonCreator *;
+     @com.fasterxml.jackson.annotation.JsonProperty *;
+}
 
 ## LIBRARY: Simple framework
 -keep public class org.simpleframework.**{ *; }
