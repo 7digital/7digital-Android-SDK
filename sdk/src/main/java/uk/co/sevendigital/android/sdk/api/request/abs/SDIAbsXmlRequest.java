@@ -119,7 +119,7 @@ public abstract class SDIAbsXmlRequest<T> extends SDIAbsRequest<T> {
 		}
 
 		@Override public SDIRelease.SDIPrice getPrice() {
-			return new SDIRelease.SDIPrice(mPrice);
+			return null!=mPrice?new SDIRelease.SDIPrice(mPrice):null;
 		}
 
 		@Override public Object getFormats() {
@@ -204,6 +204,7 @@ public abstract class SDIAbsXmlRequest<T> extends SDIAbsRequest<T> {
 		@Element(name = "price", required = false) public XMLPrice mPrice;
 		@Element(name = "trackNumber",required = false) public int mTrackNumber;
 		@Element(name = "duration",required = false) public int mDuration;
+		@Element(name = "release",required = false) public XMLRelease mRelease;
 		@Element(name = "explicitContent",required = false) public boolean mExplicitContent;
 		@Element(name = "isrc",required = false) public String mIsrc;
 		@Element(name = "type",required = false) public String mType;
@@ -243,7 +244,7 @@ public abstract class SDIAbsXmlRequest<T> extends SDIAbsRequest<T> {
 		}
 
 		@Override public SDIRelease getRelease() {
-			return null; //todo:
+			return null != mRelease ? new SDIRelease(mRelease) : null;
 		}
 
 		@Override public String getUrl() {

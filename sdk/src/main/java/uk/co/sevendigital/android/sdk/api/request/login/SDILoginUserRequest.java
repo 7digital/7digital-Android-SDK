@@ -118,6 +118,9 @@ public class SDILoginUserRequest extends SDIAbsRequest<SDILoginUserRequest.Resul
 		// return an unknown response if the login response is invalid
 		if (response == null) return new Result(ResultCode.FAILURE_UNKNOWN);
 
+		// return if the consumer key is not authorised to login the user
+		if (response.getStatusLine().getStatusCode() == 401) return new Result(ResultCode.FAILURE_CONSUMER_UNAUTHORISED);
+
 		// retrieve the xml string response
 		InputStream instream = response.getEntity().getContent();
 		Header contentEncoding = response.getFirstHeader("Content-Encoding");
@@ -275,7 +278,8 @@ public class SDILoginUserRequest extends SDIAbsRequest<SDILoginUserRequest.Resul
 		SUCCESS,									// the login was successful
 		FAILURE_INVALID_CREDENTIALS,				// the login failed due to invalid credentials (username/password)
 		FAILURE_NETWORK, 							// the login failed due to network connectivity
-		FAILURE_UNKNOWN								// the login failed for an unknown reason
+		FAILURE_UNKNOWN,							// the login failed for an unknown reason
+		FAILURE_CONSUMER_UNAUTHORISED				// the login failed because the consumer (key) is unauthorised
 	}
 
 	// @formatter:on

@@ -1,15 +1,14 @@
 package uk.co.sevendigital.android.sdk.api.request.preview;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.Pair;
 
 import com.android.volley.Cache;
 import com.android.volley.Request.Method;
 import com.android.volley.RequestQueue;
-import com.android.volley.VolleyUtil;
-import com.android.volley.VolleyUtil.CacheEntryRequestParams;
-import com.android.volley.VolleyUtil.CacheEntryResponse;
 
 import java.io.IOException;
 import java.security.SignatureException;
@@ -23,6 +22,7 @@ import uk.co.sevendigital.android.sdk.core.SDICore;
 import uk.co.sevendigital.android.sdk.api.request.abs.SDIAbsRequest;
 import uk.co.sevendigital.android.sdk.util.SDIOauthHelper;
 import uk.co.sevendigital.android.sdk.util.SDIServerUtil;
+import uk.co.sevendigital.android.sdk.util.VolleyUtil;
 
 public final class SDIGetTrackPreviewRequest extends SDIAbsRequest<SDIGetTrackPreviewRequest.Result> {
 
@@ -34,28 +34,29 @@ public final class SDIGetTrackPreviewRequest extends SDIAbsRequest<SDIGetTrackPr
 	 *
 	 * Get a track preview for a track
 	 *
-	 * @param context
+	 * @param context the application context.
 	 * @param consumer the OauthConsumer credentials for this call
 	 * @param queue the volley request queue to use for this call
-	 * @param token the server access token
+	 * @param token the server access token (optional)
 	 * @param trackId the unique id of the track to preview
-	 * @return
+	 *
+	 * @return the result of the request
+	 *
 	 * @throws InterruptedException
 	 * @throws ExecutionException
 	 * @throws IOException
 	 * @throws SignatureException
 	 */
-	public static Result execute(Context context, SDIServerUtil.OauthConsumer consumer,RequestQueue queue,
-			SDIServerUtil.ServerAccessToken token, final String trackId) throws InterruptedException, ExecutionException, IOException,
-			SignatureException {
+	@SuppressWarnings("ConstantConditions") public static Result execute(@NonNull Context context,
+			@NonNull SDIServerUtil.OauthConsumer consumer, @NonNull RequestQueue queue, @Nullable SDIServerUtil.ServerAccessToken token,
+			@NonNull final String trackId, @NonNull final String country) throws InterruptedException, ExecutionException, IOException, SignatureException {
 
 		if (context == null) throw new NullPointerException("context cannot be null");
 		if (consumer == null) throw new NullPointerException("consumer cannot be null");
 		if (queue == null) queue = SDICore.getQueue(context);
-		if (consumer == null) throw new NullPointerException("consumer cannot be null");
-		if (token == null) throw new IllegalArgumentException("token must be provided");
-		if (trackId == null) throw new IllegalArgumentException("Track Id must be provided");
-
+		if (trackId == null) throw new IllegalArgumentException("track id must be provided");
+       		if (country == null) throw new IllegalArgumentException("country / shopId must be provided");
+       		
 		String timestamp = SDIOauthHelper.getServerTime(SDIServerUtil.getHttpClient(), consumer.toTuple());
 		String nonce = SDIOauthHelper.getNonce();
 
@@ -67,6 +68,7 @@ public final class SDIGetTrackPreviewRequest extends SDIAbsRequest<SDIGetTrackPr
 		parameters.add(new Pair<String, String>("oauth_signature_method", "HMAC-SHA1"));
 		parameters.add(new Pair<String, String>("oauth_timestamp", timestamp));
 		if (token != null) parameters.add(new Pair<String, String>("oauth_token", token.getToken()));
+		parameters.add(new Pair<String, String>("country", country));
 		Collections.sort(parameters, SDIServerUtil.SORT_ALPHABETICAL_BY_KEY);
 
 		// calculate and add the signature (if required)
@@ -78,9 +80,9 @@ public final class SDIGetTrackPreviewRequest extends SDIAbsRequest<SDIGetTrackPr
 		// build full url
 		url += "?" + SDIServerUtil.buildUrlParameterString(parameters);
 
-		CacheEntryRequestParams params = new CacheEntryRequestParams(queue, Method.GET, url);
+		VolleyUtil.CacheEntryRequestParams params = new VolleyUtil.CacheEntryRequestParams(queue, Method.GET, url);
 		addUserAgent(params);
-		CacheEntryResponse<String> response = VolleyUtil.executeStringRequest(params);
+		VolleyUtil.CacheEntryResponse<String> response = VolleyUtil.executeStringRequest(params);
 
 		// throw an exception if the response is invalid
 		if (response == null || response.getResponse() == null) throw new IllegalStateException("response invalid: " + response);
@@ -88,7 +90,7 @@ public final class SDIGetTrackPreviewRequest extends SDIAbsRequest<SDIGetTrackPr
 		String data = response.getResponse();
 
 		// return if the response is invalid
-		if (data != null && TextUtils.isEmpty(data)) return new Result(ResultCode.FAILURE_UNKNOWN);
+		if (TextUtils.isEmpty(data)) return new Result(ResultCode.FAILURE_UNKNOWN);
 
 		return new Result(ResultCode.SUCCESS, response.getCacheEntry(), data.getBytes());
 	}

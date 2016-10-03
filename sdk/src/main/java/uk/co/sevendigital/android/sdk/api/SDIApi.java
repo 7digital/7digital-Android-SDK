@@ -1,11 +1,5 @@
 package uk.co.sevendigital.android.sdk.api;
 
-import android.content.Context;
-
-import com.android.volley.RequestQueue;
-import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.databind.JsonMappingException;
-
 import java.io.IOException;
 import java.security.SignatureException;
 import java.util.concurrent.ExecutionException;
@@ -24,6 +18,13 @@ import uk.co.sevendigital.android.sdk.api.request.track.SDIGetTrackChartsRequest
 import uk.co.sevendigital.android.sdk.api.request.track.SDIGetTrackDetailsRequest;
 import uk.co.sevendigital.android.sdk.api.request.track.SDITrackSearchRequest;
 import uk.co.sevendigital.android.sdk.util.SDIServerUtil;
+import android.content.Context;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+
+import com.android.volley.RequestQueue;
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 
 // @formatter:off
 /**
@@ -534,12 +535,31 @@ public class SDIApi {
 
 		/**
 		 * Get the url of a track preview
+		 *
+		 * @param trackId - id of the track get preview
 		 * 
-		 * @return the url for a track preview
+		 * @return the bytes for the track preview
 		 */
-		public SDIGetTrackPreviewRequest.Result getTrackPreview(SDIServerUtil.ServerAccessToken token, String trackId)
+		public SDIGetTrackPreviewRequest.Result getTrackPreview(@NonNull String trackId, @NonNull String country)
 				throws InterruptedException, ExecutionException, SignatureException, IOException {
-			return SDIGetTrackPreviewRequest.execute(mContext, mConsumer, mRequestQueue, token, trackId);
+			return getTrackPreview(null, trackId, country);
+		}
+
+		/**
+		 *
+		 * Get the url of a track preview
+		 *
+		 * @param token a authenticated token for a logged in user
+		 * @param trackId - the bytes for the track preview
+		 * @return
+		 * @throws InterruptedException
+		 * @throws ExecutionException
+		 * @throws SignatureException
+		 * @throws IOException
+		 */
+		public SDIGetTrackPreviewRequest.Result getTrackPreview(@Nullable SDIServerUtil.ServerAccessToken token, @NonNull String trackId, @NonNull String country)
+				throws InterruptedException, ExecutionException, SignatureException, IOException {
+			return SDIGetTrackPreviewRequest.execute(mContext, mConsumer, mRequestQueue, token, trackId, country);
 		}
 	}
 }

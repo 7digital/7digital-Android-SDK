@@ -7,6 +7,7 @@ import java.util.Date;
 import uk.co.sevendigital.android.sdk.model.base.Track;
 
 public class SDITrack implements Track, android.os.Parcelable {
+	private static final long serialVersionUID = 3946173619294217397L;
 
 	public SDITrack() {}
 
