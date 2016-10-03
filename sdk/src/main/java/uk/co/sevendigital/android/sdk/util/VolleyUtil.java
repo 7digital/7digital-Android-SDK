@@ -156,7 +156,7 @@ public class VolleyUtil {
             mRequestParams = params;
             mListener = listener;
 
-            setShouldCache(params.isUseCache());
+            mRequestQueue.getCache().clear();
             RetryPolicy retryPolicy = params.getRetryPolicy();
             if (retryPolicy != null)
                 setRetryPolicy(retryPolicy);
